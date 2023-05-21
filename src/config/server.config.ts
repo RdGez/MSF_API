@@ -3,6 +3,8 @@ import morgan from "morgan"
 import initializeDB from "./db.config"
 import express, { Application } from "express"
 
+import AuthRoutes from '../routes/auth.routes'
+
 class Server {
   private port: String
   private app: Application
@@ -31,6 +33,7 @@ class Server {
   
   routes() {
     // Here we will add global routes for our app.
+    this.app.use('/api/auth', AuthRoutes);
   }
 }
 

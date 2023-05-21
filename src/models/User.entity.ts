@@ -3,15 +3,15 @@ import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateCol
 @Entity()
 export default class User extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column('varchar', { length: 45 })
   name: string;
 
-  @Column('varchar', { length: 45 })
+  @Column('varchar', { length: 45, unique: true })
   email: string;
 
-  @Column('varchar', { length: 45 })
+  @Column('varchar', { length: 250 })
   password: string;
 
   @CreateDateColumn()
