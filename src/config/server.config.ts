@@ -1,6 +1,7 @@
 import cors from "cors"
-import express, { Application } from "express"
 import morgan from "morgan"
+import initializeDB from "./db.config"
+import express, { Application } from "express"
 
 class Server {
   private port: String
@@ -11,6 +12,7 @@ class Server {
     this.port = process.env.PORT || '3001'
     if( isNaN(Number( this.port )) ) throw new Error('¡Port need to be a number!')
 
+    initializeDB()
     this.middlewares()
   }
 
