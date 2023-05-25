@@ -21,7 +21,7 @@ class Server {
 
   async init() {
     initializeDB()
-    // await seedDB()
+    await seedDB()
   }
 
   middlewares() {

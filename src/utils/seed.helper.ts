@@ -22,20 +22,20 @@ export const seedDB = async () => {
   try {
     await AppDataSource.initialize()
     const hasExercises = await Exercise.find()
-    if (hasExercises.length > 0) {
+    if (hasExercises.length <= 0) {
       await AppDataSource
         .getRepository(Exercise)
         .createQueryBuilder()
         .delete()
         .execute()
-    }
 
-    await AppDataSource
-    .createQueryBuilder()
-    .insert()
-    .into(Exercise)
-    .values(seedExercises)
-    .execute()
+      await AppDataSource
+        .createQueryBuilder()
+        .insert()
+        .into(Exercise)
+        .values(seedExercises)
+        .execute()
+    }
 
     console.log('Seed executed successfully ✅')
   } catch (error) {

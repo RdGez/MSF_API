@@ -42,3 +42,25 @@ export const addTrack = async (req: any, res: Response) => {
     })
   }
 }
+
+export const getTracks = async (req: any, res: Response) => {
+  const id = req.id
+  
+  try {
+    const tracker = await Track.find({ 
+      relations: { user: false },
+      where: { user: { id } },
+    })
+
+    return res.status(200).json({
+      ok: true,
+      tracker
+    })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({
+      ok: false,
+      message: 'Error, plase try again in few seconds.'
+    }) 
+  }
+}
