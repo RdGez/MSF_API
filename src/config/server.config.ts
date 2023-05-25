@@ -3,7 +3,7 @@ import morgan from "morgan"
 import initializeDB from "./db.config"
 import express, { Application } from "express"
 
-import AuthRoutes from '../routes/auth.routes'
+import { AuthRoutes, TrackRoutes } from "../routes"
 import { seedDB } from "../utils/seed.helper"
 
 class Server {
@@ -21,7 +21,7 @@ class Server {
 
   async init() {
     initializeDB()
-    await seedDB()
+    // await seedDB()
   }
 
   middlewares() {
@@ -40,6 +40,7 @@ class Server {
   routes() {
     // Here we will add global routes for our app.
     this.app.use('/api/auth', AuthRoutes);
+    this.app.use('/api/track', TrackRoutes);
   }
 }
 

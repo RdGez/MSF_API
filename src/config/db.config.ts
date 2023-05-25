@@ -13,7 +13,7 @@ export const AppDataSource: DataSource = new DataSource({
   username: process.env.POSTGRESQL_USERNAME,
   password: process.env.POSTGRESQL_PASSWORD,
   synchronize: true,
-  entities: [ ...Entities ],
+  entities: { ...Entities },
 })
 
 async function initializeDB() {

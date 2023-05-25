@@ -1,9 +1,9 @@
 import User from './User.entity';
-import Tracker from './Track.entity';
+import Track from './Track.entity';
 import Exercises from './Exercise.entity';
 
-export default [
+export default {
   User,
-  Tracker,
+  Track,
   Exercises,
-]
+}
