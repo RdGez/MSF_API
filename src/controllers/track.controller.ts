@@ -57,10 +57,40 @@ export const getTracks = async (req: any, res: Response) => {
       tracker
     })
   } catch (error) {
-    console.log(error)
     return res.status(500).json({
       ok: false,
       message: 'Error, plase try again in few seconds.'
     }) 
+  }
+}
+
+export const deleteTrack = async (req: any, res: Response) => {
+  const userId = req.id
+  const { id } = req.params
+
+  try {
+    const track = await Track.findOne({ 
+      relations: { user: false }, 
+      where: { id, user: { id: userId }}
+    })
+    if (!track) {
+      return res.status(400).json({
+        ok: false,
+        message: 'Track not found.'
+      })
+    }
+
+    await track.remove()
+
+    return res.status(200).json({
+      ok: true,
+      message: 'Track deleted successfully.'
+    })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({
+      ok: false,
+      message: 'Error, plase try again in few seconds.'
+    })
   }
 }
